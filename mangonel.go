@@ -1,6 +1,8 @@
 package kn
 
-import "gopkg.in/telegram-bot-api.v4"
+import (
+	"gopkg.in/telegram-bot-api.v4"
+)
 
 type TelegramMangonel struct {
 	toUserId int64
@@ -26,6 +28,12 @@ func (t *TelegramMangonel) SendMdMessage(text string) (tgbotapi.Message, error) 
 	return t.bot.Send(newMdMessage(t.toUserId, text))
 }
 
+func (t *TelegramMangonel) SendMdMessageNoWait(text string) {
+	go func() {
+		t.SendMdMessage(text)
+	}()
+
+}
 func newMdMessage(chatID int64, text string) tgbotapi.MessageConfig {
 	m := tgbotapi.NewMessage(chatID, text)
 	m.ParseMode = "Markdown"
