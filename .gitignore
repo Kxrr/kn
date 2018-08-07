@@ -1,0 +1,26 @@
+scripts/
+
+# scala
+out/
+
+# python
+*.pyc
+.env
+.coverage
+
+*egg-info/
+dist/
+venv/
+.eggs/
+
+# mac
+.DS_Store
+
+# editor
+.idea/
+.vscode/
+
+# js
+node_modules/
+cover/
+cache/
