@@ -2,6 +2,7 @@ package kn
 
 import (
 	"gopkg.in/telegram-bot-api.v4"
+	log "github.com/kxrr/klog"
 )
 
 type TelegramMangonel struct {
@@ -14,6 +15,7 @@ func NewTelegramMangonel(toUserId int64, botToken string, debug bool) (*Telegram
 	if err != nil {
 		return nil, err
 	}
+	log.Printf("Connected with bot %s", bot.Self.UserName)
 	if debug {
 		bot.Debug = true
 	}
