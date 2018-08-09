@@ -1,4 +1,6 @@
 # Kn
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FKxrr%2Fkn.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FKxrr%2Fkn?ref=badge_shield)
+
 
 Send a markdown message via udp then get notified on Telegram.
 
@@ -32,3 +34,7 @@ A: https://core.telegram.org/bots#3-how-do-i-create-a-bot
 
 Q: How can I get my telegram user id?
 A: A easy way is to talk to a telegram bot called `@get_id_bot`.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FKxrr%2Fkn.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FKxrr%2Fkn?ref=badge_large)
