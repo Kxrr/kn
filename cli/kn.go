@@ -1,18 +1,18 @@
 package main
 
 import (
-	"flag"
-	"github.com/kxrr/kn"
 	"os"
 	"fmt"
+	"flag"
+	"github.com/kxrr/kn"
 )
 
+
 func main() {
-	token := flag.String("token", "", "Bot token")
-	userId := flag.Int64("userid", 0, "User id")
-	buffSize := flag.Int("buff", 2048, "Buffer size")
-	host := flag.String("host", "0.0.0.0", "Server host")
-	port := flag.Int("port", 9996, "Server port")
+	token := flag.String("token", "", "Telegram bot token")
+	userId := flag.Int64("userid", 0, "Telegram user id")
+	host := flag.String("host", "0.0.0.0", "UDP Server host")
+	port := flag.Int("port", 9996, "UDP Server port")
 	debug := flag.Bool("debug", false, "Turn on debug")
 	flag.Parse()
 
@@ -20,7 +20,6 @@ func main() {
 		fmt.Printf("Please input user id and token\n")
 		os.Exit(2)
 	}
-
 	tm, err := kn.NewTelegramMangonel(*userId, *token, *debug)
 	if err != nil {
 		panic(err)
@@ -28,7 +27,7 @@ func main() {
 	stop, err := kn.StartUdpServer(
 		*host,
 		*port,
-		*buffSize,
+		1024,
 		*tm,
 	)
 	if err != nil {
