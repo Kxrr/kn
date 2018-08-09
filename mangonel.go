@@ -32,7 +32,10 @@ func (t *TelegramMangonel) SendMdMessage(text string) (tgbotapi.Message, error) 
 
 func (t *TelegramMangonel) SendMdMessageNoWait(text string) {
 	go func() {
-		t.SendMdMessage(text)
+		_, err := t.SendMdMessage(text)
+		if err != nil {
+			log.Errorf("Send md message error: %s", err.Error())
+		}
 	}()
 
 }
