@@ -39,6 +39,13 @@ func (t *TelegramMangonel) SendMdMessageNoWait(text string) {
 	}()
 
 }
+
+func (t *TelegramMangonel) SendHtmlMessage(text string) (tgbotapi.Message, error) {
+	return t.bot.Send(tgbotapi.NewMessage(t.toUserId, text))
+}
+
+
+
 func newMdMessage(chatID int64, text string) tgbotapi.MessageConfig {
 	m := tgbotapi.NewMessage(chatID, text)
 	m.ParseMode = "Markdown"

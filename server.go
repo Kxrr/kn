@@ -7,7 +7,7 @@ import (
 )
 
 func StartUdpServer(host string, port int, bufsize int, mangonel TelegramMangonel) (chan bool, error) {
-	messages, err := udp.ListenUdp(host, port, bufsize)
+	messages, err := udp.ListenUdp(host, port, bufsize, 100)
 	if err != nil {
 		return nil, err
 	}
@@ -18,8 +18,12 @@ func StartUdpServer(host string, port int, bufsize int, mangonel TelegramMangone
 		for {
 			select {
 			case message := <-messages:
+				if message.Error != nil {
+					log.Errorf("Error when reading message: %s", message.Error.Error())
+					continue
+				}
 				log.Debugf("Forwarding udp message to telegram from %s", message.Remote)
-				text := strings.Replace(string(message.Message), "\\n", "\n", -1)
+				text := strings.Replace(string(message.Data), "\\n", "\n", -1)
 				mangonel.SendMdMessageNoWait(text)
 			case <-stop:
 				return
